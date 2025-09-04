@@ -42,6 +42,21 @@ php artisan key:generate
 
 # Run migrations
 php artisan migrate
+```
+## 🔑 Authentication
+
+This project uses Laravel Sanctum for API authentication.
+
+## Register a user
+POST /api/register
+
+## Login to get a toke
+
+POST /api/login
+
+## Include the token in the Authorization header for protected routes:
+
+Authorization: Bearer <token>
 
 ## 📌 API Endpoints
 
@@ -71,3 +86,23 @@ php artisan migrate
 | PUT    | `/api/tasks/{id}`          | Update task              |
 | DELETE | `/api/tasks/{id}`          | Delete task              |
 | POST   | `/api/tasks/{id}/assign`   | Assign task to a user    |
+
+## 🧪 Running Tests
+
+This project uses PEST for testing.
+
+# Run all tests
+php artisan test
+
+# OR run directly with pest
+./vendor/bin/pest
+
+## 📖 License
+
+This project is open-sourced under the MIT license.
+
+
+---
+
+Now it’s **all inside one markdown structure** – no extra notes outside.  
+Do you also want me to add a **badge section** (like Laravel, PHP, PEST badges at the top) so the README looks even more professional?
