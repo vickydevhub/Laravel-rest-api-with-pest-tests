@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    post:
+      summary: ''
+      operationId: postApiRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vfjjolgsrkdnkjg
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: jzieme@example.org
+                  nullable: false
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: hZxb<1<|KKY
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: mathilde.legros@example.net
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: 'h7O\7[xve*U''@"i`L7N'
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  /api/projects:
+    post:
+      summary: ''
+      operationId: postApiProjects
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: pqenqmytpsvawaalfplynnboo
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Qui voluptas et earum.'
+                  nullable: true
+              required:
+                - name
+      security: []
+  '/api/projects/{id}':
+    put:
+      summary: ''
+      operationId: putApiProjectsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: juizclmbmzzvwcnhflfzllxo
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Praesentium eaque molestiae sint.'
+                  nullable: true
+              required:
+                - name
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiProjectsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the project.'
+        example: maiores
+        required: true
+        schema:
+          type: string
+  '/api/projects/{project_id}/tasks':
+    get:
+      summary: ''
+      operationId: getApiProjectsProject_idTasks
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiProjectsProject_idTasks
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ihoafvoxkjtvrprzigtwewo
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Veniam omnis laboriosam dolorem sunt aut.'
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: completed
+                  nullable: false
+                  enum:
+                    - pending
+                    - in-progress
+                    - completed
+                due_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2025-09-04T09:36:46'
+                  nullable: true
+              required:
+                - name
+                - status
+      security: []
+    parameters:
+      -
+        in: path
+        name: project_id
+        description: 'The ID of the project.'
+        example: voluptas
+        required: true
+        schema:
+          type: string
+  '/api/tasks/{id}':
+    put:
+      summary: ''
+      operationId: putApiTasksId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: lbbtlilzcpbhlot
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Omnis quos corrupti ut cumque molestiae et nostrum.'
+                  nullable: true
+                status:
+                  type: string
+                  description: ''
+                  example: completed
+                  nullable: false
+                  enum:
+                    - pending
+                    - in_progress
+                    - completed
+                due_date:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2025-09-04T09:36:46'
+                  nullable: true
+              required:
+                - name
+                - status
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiTasksId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the task.'
+        example: animi
+        required: true
+        schema:
+          type: string
+  '/api/tasks/{id}/assign':
+    post:
+      summary: ''
+      operationId: postApiTasksIdAssign
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: voluptatem
+                  nullable: false
+              required:
+                - user_id
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the task.'
+        example: modi
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Endpoints
+    description: ''

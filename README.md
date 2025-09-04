@@ -104,6 +104,15 @@ php artisan test
 # OR run directly with pest
 ./vendor/bin/pest
 
+## 📘 API Documentation
+
+This project uses **[Laravel Scribe](https://scribe.knuckles.wtf/)** to generate API documentation.
+
+### Generate docs
+```bash
+php artisan scribe:generate
+```
+
 ## 📖 License
 
 This project is open-sourced under the MIT license.
