@@ -1,5 +1,12 @@
 # Laravel REST API with PEST Tests
 
+![Laravel](https://img.shields.io/badge/Laravel-9.x-FF2D20?style=flat&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat&logo=php&logoColor=white)
+![Sanctum](https://img.shields.io/badge/Auth-Sanctum-6DB33F?style=flat&logo=laravel&logoColor=white)
+![PEST](https://img.shields.io/badge/Tests-PEST-1D1D1D?style=flat&logo=php&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat)
+
+
 A simple **Laravel 9 REST API** project that demonstrates building APIs with authentication, CRUD operations, and testing using **PEST**.
 
 ---
@@ -104,5 +111,4 @@ This project is open-sourced under the MIT license.
 
 ---
 
-Now it’s **all inside one markdown structure** – no extra notes outside.  
-Do you also want me to add a **badge section** (like Laravel, PHP, PEST badges at the top) so the README looks even more professional?
+
