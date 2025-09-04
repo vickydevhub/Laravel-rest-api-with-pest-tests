@@ -42,3 +42,32 @@ php artisan key:generate
 
 # Run migrations
 php artisan migrate
+
+## 📌 API Endpoints
+
+## Auth
+
+| Method | Endpoint        | Description           |
+| ------ | --------------- | --------------------- |
+| POST   | `/api/register` | Register a new user   |
+| POST   | `/api/login`    | Login and get a token |
+
+## Projects
+
+| Method | Endpoint             | Description       |
+| ------ | -------------------- | ----------------- |
+| GET    | `/api/projects`      | List all projects |
+| POST   | `/api/projects`      | Create project    |
+| PUT    | `/api/projects/{id}` | Update project    |
+| DELETE | `/api/projects/{id}` | Delete project    |
+
+
+## tasks
+
+| Method | Endpoint                   | Description              |
+| ------ | -------------------------- | ------------------------ |
+| GET    | `/api/projects/{id}/tasks` | List tasks for a project |
+| POST   | `/api/projects/{id}/tasks` | Create task              |
+| PUT    | `/api/tasks/{id}`          | Update task              |
+| DELETE | `/api/tasks/{id}`          | Delete task              |
+| POST   | `/api/tasks/{id}/assign`   | Assign task to a user    |
