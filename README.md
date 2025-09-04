@@ -26,7 +26,19 @@ A simple **Laravel 9 REST API** project that demonstrates building APIs with aut
 
 ## 📂 Installation
 
-1. Clone the repo
-   ```bash
-   git clone https://github.com/vickydevhub/Laravel-rest-api-with-pest-tests.git
-   cd Laravel-rest-api-with-pest-tests
+```bash
+# Clone the repo
+git clone https://github.com/vickydevhub/Laravel-rest-api-with-pest-tests.git
+cd Laravel-rest-api-with-pest-tests
+
+# Install dependencies
+composer install
+
+# Copy .env file
+cp .env.example .env
+
+# Generate app key
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
