@@ -112,6 +112,42 @@ This project uses **[Laravel Scribe](https://scribe.knuckles.wtf/)** to generate
 ```bash
 php artisan scribe:generate
 ```
+## 🐳 Running with Docker
+
+This project supports running inside Docker for easier setup.
+
+### Build the Docker image
+```bash
+docker build -t laravel-rest-api-app .
+
+## Run the Container 
+
+docker run -d -p 8000:8000 --name laravel-rest-api laravel-rest-api-app
+
+```
+
+## Access the application
+
+API will be available at: http://localhost:8000
+
+## Container management
+
+# List running containers
+docker ps
+
+# Stop the container
+docker stop laravel-rest-api
+
+# Start the container again
+docker start laravel-rest-api
+
+# Remove container
+docker rm laravel-rest-api
+
+## Logs
+
+docker logs -f laravel-rest-api
+
 
 ## 📖 License
 
