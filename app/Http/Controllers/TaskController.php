@@ -67,4 +67,12 @@ class TaskController extends Controller
 
     return response()->json($task, 200); // no eager load
   }
+
+  public function show(Task $task)
+  {
+      return response()->json([
+          'success' => true,
+          'data' => $task,
+      ]);
+  }
 }
