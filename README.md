@@ -148,6 +148,123 @@ docker rm laravel-rest-api
 
 docker logs -f laravel-rest-api
 
+# 🤖 AI-Assisted Development Workflow
+
+This project demonstrates an AI-assisted Software Development Lifecycle (SDLC) using modern development tools and GitHub automation.
+
+## Local Development
+
+### Pre-Commit Quality Checks
+
+Every commit automatically executes:
+
+- Laravel Pint (PSR-12 Code Formatting)
+- Larastan (PHPStan Static Analysis)
+- Pest Test Suite
+
+If any check fails, the commit is rejected.
+
+### Pre-Push Validation
+
+Before code is pushed to GitHub:
+
+- Pest tests are executed
+- Push is blocked if tests fail
+
+---
+
+## Continuous Integration
+
+GitHub Actions automatically validates every Pull Request.
+
+### CI Pipeline
+
+- Checkout Repository
+- Setup PHP
+- Install Composer Dependencies
+- Validate composer.json
+- Composer Security Audit
+- Laravel Pint
+- Larastan (PHPStan)
+- Pest Tests
+
+Only code that passes all quality gates should be merged.
+
+---
+
+## AI Code Review
+
+This repository uses **CodeRabbit AI** for automated Pull Request reviews.
+
+Features include:
+
+- AI-generated Pull Request summaries
+- Code quality recommendations
+- Laravel best practice suggestions
+- Security analysis
+- Performance recommendations
+- Architecture feedback
+
+---
+
+## AI Governance
+
+The project includes an `AGENTS.md` file defining guidelines for AI-assisted development.
+
+AI agents are instructed to:
+
+- Follow PSR-12
+- Follow Laravel best practices
+- Apply SOLID principles
+- Write Pest tests
+- Review security concerns
+- Avoid breaking existing functionality
+- Work only within feature branches
+
+---
+
+## Quality Gates
+
+The following automated checks are enforced:
+
+- ✅ Laravel Pint
+- ✅ Larastan (PHPStan)
+- ✅ Pest Tests
+- ✅ Composer Validation
+- ✅ Composer Security Audit
+- ✅ GitHub Actions CI
+- ✅ CodeRabbit AI Review
+
+---
+
+## Development Workflow
+
+```text
+Developer
+    │
+Git Commit
+    │
+Pre-Commit Hook
+    ├── Laravel Pint
+    ├── Larastan
+    └── Pest
+    │
+Git Push
+    │
+GitHub Actions CI
+    ├── Composer Validate
+    ├── Composer Audit
+    ├── Laravel Pint
+    ├── Larastan
+    └── Pest
+    │
+Pull Request
+    │
+CodeRabbit AI Review
+    │
+Merge
+```
+
 
 ## 📖 License
 
