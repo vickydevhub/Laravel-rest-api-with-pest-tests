@@ -12,8 +12,12 @@ on:
       - master
       - develop
 
+permissions:
+  contents: read
+
 jobs:
   laravel-tests:
+    name: Laravel Quality Checks
     runs-on: ubuntu-latest
 
     steps:
@@ -24,13 +28,30 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
+          extensions: mbstring, sqlite3, pdo_sqlite
           coverage: none
+
+      - name: Cache Composer Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            vendor
+            ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Install Dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Security Audit
+        run: composer audit
 
       - name: Generate Application Key
         run: php artisan key:generate
