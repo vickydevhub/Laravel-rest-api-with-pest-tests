@@ -4,8 +4,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-use App\Models\User;
 use App\Models\Project;
+use App\Models\User;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -15,13 +15,13 @@ beforeEach(function () {
 test('a user can create a project', function () {
     $data = [
         'name' => 'My Project',
-        'description' => 'Test description'
+        'description' => 'Test description',
     ];
 
     $response = $this->postJson('/api/projects', $data);
 
     $response->assertStatus(201)
-             ->assertJsonFragment(['name' => 'My Project']);
+        ->assertJsonFragment(['name' => 'My Project']);
 });
 
 test('a user can update a project', function () {
@@ -29,11 +29,11 @@ test('a user can update a project', function () {
 
     $response = $this->putJson("/api/projects/{$project->id}", [
         'name' => 'Updated Project',
-        'description' => 'Updated description'
+        'description' => 'Updated description',
     ]);
 
     $response->assertStatus(200)
-             ->assertJsonFragment(['name' => 'Updated Project']);
+        ->assertJsonFragment(['name' => 'Updated Project']);
 });
 
 test('a user can delete a project', function () {

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
@@ -22,7 +22,7 @@ test('a user can create a task for a project', function () {
     $response = $this->postJson("/api/projects/{$project->id}/tasks", $data);
 
     $response->assertStatus(201)
-             ->assertJsonFragment(['name' => 'New Task']);
+        ->assertJsonFragment(['name' => 'New Task']);
 
     $this->assertDatabaseHas('tasks', [
         'name' => 'New Task',
@@ -41,7 +41,7 @@ test('a user can update a task', function () {
     ]);
 
     $response->assertStatus(200)
-             ->assertJsonFragment(['name' => 'Updated Task']);
+        ->assertJsonFragment(['name' => 'Updated Task']);
 });
 
 test('a user can delete a task', function () {
@@ -63,7 +63,7 @@ test('a user can assign a task to another user', function () {
     ]);
 
     $response->assertStatus(200)
-             ->assertJsonFragment(['assigned_to' => $assignee->id]);
+        ->assertJsonFragment(['assigned_to' => $assignee->id]);
 
     $this->assertDatabaseHas('tasks', [
         'id' => $task->id,

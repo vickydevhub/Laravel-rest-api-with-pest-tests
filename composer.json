@@ -14,12 +14,14 @@
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "knuckleswtf/scribe": "^4.40",
-        "laravel/pint": "^1.0",
+        "larastan/larastan": "2.9",
+        "laravel/pint": "^1.29",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "pestphp/pest": "^1.23",
         "pestphp/pest-plugin-laravel": "^1.4",
+        "phpstan/phpstan": "1.12",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
