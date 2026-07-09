@@ -1,5 +1,43 @@
 #!/bin/sh
 
-echo "Running pre-commit hook..."
+echo ""
+echo "======================================"
+echo " Running Pre-Commit Checks"
+echo "======================================"
 
+echo ""
+echo "1. Laravel Pint"
+
+./vendor/bin/pint --test
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Pint failed"
+    exit 1
+fi
+
+echo ""
+echo "2. PHPStan"
+
+./vendor/bin/phpstan analyse
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ PHPStan failed"
+    exit 1
+fi
+
+echo ""
+echo "3. PEST"
+
+./vendor/bin/pest
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ PEST failed"
+    exit 1
+fi
+
+echo ""
+echo "✅ All pre-commit checks passed!"
 exit 0

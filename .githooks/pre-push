@@ -1,5 +1,18 @@
 #!/bin/sh
 
-echo "Running pre-push hook..."
+echo ""
+echo "======================================"
+echo " Running Pre-Push Checks"
+echo "======================================"
 
+./vendor/bin/pest
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Tests failed."
+    exit 1
+fi
+
+echo ""
+echo "✅ Push allowed."
 exit 0
