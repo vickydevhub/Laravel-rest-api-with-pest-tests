@@ -1,0 +1,17 @@
+{
+    "name": "vickydevhub/laravel-mcp-server",
+    "description": "Custom MCP Server for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vivek Kumar"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MCP\\": "src/"
+        }
+    }
+}

@@ -148,6 +148,120 @@ docker rm laravel-rest-api
 
 docker logs -f laravel-rest-api
 
+# 🤖 AI-Native Development
+
+This repository demonstrates how AI can be integrated throughout the Software Development Lifecycle (SDLC).
+
+## AI Development Stack
+
+- Custom PHP MCP Server
+- Cursor AI Integration
+- CodeRabbit AI Reviews
+- GitHub Actions
+- Laravel Pint
+- Larastan
+- PEST Testing
+
+---
+
+## Model Context Protocol (MCP)
+
+The project includes a custom PHP implementation of an MCP (Model Context Protocol) server that enables AI assistants to interact directly with the Laravel application.
+
+### Current MCP Tools
+
+| Tool | Description |
+|------|-------------|
+| `laravel_routes` | Lists all Laravel routes |
+| `artisan` | Executes allow-listed Laravel Artisan commands |
+| `pest` | *(Coming Soon)* Execute the PEST test suite |
+| `phpstan` | *(Coming Soon)* Static analysis |
+| `pint` | *(Coming Soon)* Code formatting |
+| `git` | *(Coming Soon)* Git operations |
+| `database` | *(Coming Soon)* Database inspection |
+
+---
+
+### Cursor Integration
+
+Create:
+
+```text
+.cursor/mcp.json
+```
+
+Example:
+
+```json
+{
+  "mcpServers": {
+    "laravel-mcp": {
+      "command": "C:\\xampp\\php\\php.exe",
+      "args": [
+        "C:\\xampp\\htdocs\\Laravel-rest-api-with-pest-tests\\mcp\\server.php"
+      ]
+    }
+  }
+}
+```
+
+Restart Cursor after saving the configuration.
+
+The AI assistant can then invoke the MCP tools directly.
+
+Example prompts:
+
+```
+List all Laravel routes.
+```
+
+```
+Run php artisan about.
+```
+
+```
+Show the migration status.
+```
+
+---
+
+### MCP Project Structure
+
+```text
+mcp/
+├── bootstrap.php
+├── server.php
+├── composer.json
+└── src/
+    ├── Protocol/
+    ├── Registry/
+    ├── Server/
+    └── Tools/
+        ├── ToolInterface.php
+        ├── RouteTool.php
+        └── ArtisanTool.php
+```
+
+---
+
+### Security
+
+The MCP server exposes only approved tools.
+
+Current protections:
+
+- Allow-listed Artisan commands
+- Read-only route inspection
+- No destructive operations
+- Tool registration through a central registry
+
+Future enhancements:
+
+- Authentication
+- Authorization
+- Audit logging
+- Tool permissions
+
 # 🤖 AI-Assisted Development Workflow
 
 This project demonstrates an AI-assisted Software Development Lifecycle (SDLC) using modern development tools and GitHub automation.

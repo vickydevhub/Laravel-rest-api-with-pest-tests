@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-mcp": {
+            "command": "C:\\xampp\\php\\php.exe",
+            "args": [
+                "C:\\xampp\\htdocs\\Laravel-rest-api-with-pest-tests\\mcp\\server.php"
+            ],
+            "cwd": "C:\\xampp\\htdocs\\Laravel-rest-api-with-pest-tests"
+        }
+    }
+}
