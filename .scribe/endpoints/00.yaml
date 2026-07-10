@@ -3,14 +3,14 @@ description: ''
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api/register
+      - GET
+    uri: api/projects
     metadata:
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'GET /api/projects'
       description: ''
       authenticated: false
       custom: []
@@ -21,95 +21,20 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vfjjolgsrkdnkjg
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      email:
-        name: email
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
-        required: true
-        example: jzieme@example.org
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      password:
-        name: password
-        description: 'Must be at least 8 characters.'
-        required: true
-        example: hZxb<1<|KKY
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      name: vfjjolgsrkdnkjg
-      email: jzieme@example.org
-      password: hZxb<1<|KKY
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/login
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: 'Must be a valid email address.'
-        required: true
-        example: mathilde.legros@example.net
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
         custom: []
-      password:
-        name: password
-        description: ''
-        required: true
-        example: 'h7O\7[xve*U''@"i`L7N'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      email: mathilde.legros@example.net
-      password: 'h7O\7[xve*U''@"i`L7N'
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -141,7 +66,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: pqenqmytpsvawaalfplynnboo
+        example: wcyotcybfinsbzlihra
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -151,17 +76,68 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Qui voluptas et earum.'
+        example: 'Blanditiis exercitationem dicta non et.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: pqenqmytpsvawaalfplynnboo
-      description: 'Qui voluptas et earum.'
+      name: wcyotcybfinsbzlihra
+      description: 'Blanditiis exercitationem dicta non et.'
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/projects/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET /api/projects/{project}'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the project.'
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 4
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -190,14 +166,14 @@ endpoints:
         name: id
         description: 'The ID of the project.'
         required: true
-        example: maiores
-        type: string
+        example: 4
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: maiores
+      id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -205,7 +181,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: juizclmbmzzvwcnhflfzllxo
+        example: yhktoayov
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,15 +191,15 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Praesentium eaque molestiae sint.'
+        example: 'Soluta laudantium esse minima.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: juizclmbmzzvwcnhflfzllxo
-      description: 'Praesentium eaque molestiae sint.'
+      name: yhktoayov
+      description: 'Soluta laudantium esse minima.'
     fileParameters: []
     responses: []
     responseFields: []
@@ -253,14 +229,14 @@ endpoints:
         name: id
         description: 'The ID of the project.'
         required: true
-        example: sit
-        type: string
+        example: 4
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sit
+      id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -294,14 +270,14 @@ endpoints:
         name: project_id
         description: 'The ID of the project.'
         required: true
-        example: voluptas
-        type: string
+        example: 4
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      project_id: voluptas
+      project_id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -314,7 +290,8 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          access-control-allow-origin: '*'
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
         description: null
         custom: []
     responseFields: []
@@ -344,14 +321,14 @@ endpoints:
         name: project_id
         description: 'The ID of the project.'
         required: true
-        example: voluptatem
-        type: string
+        example: 4
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      project_id: voluptatem
+      project_id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -359,7 +336,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ihoafvoxkjtvrprzigtwewo
+        example: bvlhtr
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -369,7 +346,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Veniam omnis laboriosam dolorem sunt aut.'
+        example: 'Quod quidem aut consequatur beatae vel.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -392,19 +369,70 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2025-09-04T09:36:46'
+        example: '2026-07-10T12:16:37'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: ihoafvoxkjtvrprzigtwewo
-      description: 'Veniam omnis laboriosam dolorem sunt aut.'
+      name: bvlhtr
+      description: 'Quod quidem aut consequatur beatae vel.'
       status: completed
-      due_date: '2025-09-04T09:36:46'
+      due_date: '2026-07-10T12:16:37'
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/tasks/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -433,14 +461,14 @@ endpoints:
         name: id
         description: 'The ID of the task.'
         required: true
-        example: animi
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: animi
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -448,7 +476,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: lbbtlilzcpbhlot
+        example: iuufhjvlrdvkjjqhhwcxwizd
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -458,7 +486,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Omnis quos corrupti ut cumque molestiae et nostrum.'
+        example: 'Id sint aut ea fugiat.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -481,17 +509,17 @@ endpoints:
         name: due_date
         description: 'Must be a valid date.'
         required: false
-        example: '2025-09-04T09:36:46'
+        example: '2026-07-10T12:16:37'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: lbbtlilzcpbhlot
-      description: 'Omnis quos corrupti ut cumque molestiae et nostrum.'
+      name: iuufhjvlrdvkjjqhhwcxwizd
+      description: 'Id sint aut ea fugiat.'
       status: completed
-      due_date: '2025-09-04T09:36:46'
+      due_date: '2026-07-10T12:16:37'
     fileParameters: []
     responses: []
     responseFields: []
@@ -521,14 +549,14 @@ endpoints:
         name: id
         description: 'The ID of the task.'
         required: true
-        example: sint
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sint
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -562,14 +590,14 @@ endpoints:
         name: id
         description: 'The ID of the task.'
         required: true
-        example: modi
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: modi
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -577,16 +605,56 @@ endpoints:
         name: user_id
         description: 'The <code>id</code> of an existing record in the users table.'
         required: true
-        example: voluptatem
+        example: ex
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      user_id: voluptatem
+      user_id: ex
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
