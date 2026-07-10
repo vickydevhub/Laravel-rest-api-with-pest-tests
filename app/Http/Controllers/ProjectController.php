@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\Project\CreateProjectDTO;
+use App\DTOs\Project\UpdateProjectDTO;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -50,28 +54,23 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
 
-        $project = Project::create($validated);
+        $dto = CreateProjectDTO::fromArray($request->validated());
+
+        $project = Project::create($dto->toArray());
 
         return response()->json($project, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, $id)
     {
         $project = Project::findOrFail($id);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        $dto = UpdateProjectDTO::fromArray($request->validated());
 
-        $project->update($validated);
+        $project->update($dto->toArray());
 
         return response()->json($project, 200);
     }

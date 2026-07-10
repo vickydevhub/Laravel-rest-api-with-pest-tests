@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\Auth\LoginDTO;
+use App\DTOs\Auth\RegisterDTO;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -14,18 +17,15 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+
+        $dto = RegisterDTO::fromArray($request->validated());
 
         $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
+            'name' => $dto->name,
+            'email' => $dto->email,
+            'password' => bcrypt($dto->password),
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -38,14 +38,13 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        $credentials = $request->validated();
 
-        if (! Auth::attempt($credentials)) {
+        $dto = LoginDTO::fromArray($credentials);
+
+        if (! Auth::attempt($dto->toArray())) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
