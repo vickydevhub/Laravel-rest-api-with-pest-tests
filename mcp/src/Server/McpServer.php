@@ -14,8 +14,7 @@ class McpServer
 
     public function __construct(
         private ToolRegistry $registry
-    ) {
-    }
+    ) {}
 
     public function listTools(int|string|null $id): string
     {
@@ -48,7 +47,7 @@ class McpServer
                 'version' => '1.0.0',
             ],
             'capabilities' => [
-                'tools' => new \stdClass(),
+                'tools' => new \stdClass,
             ],
         ]);
     }

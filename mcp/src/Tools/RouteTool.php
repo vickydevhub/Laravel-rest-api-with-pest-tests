@@ -18,16 +18,16 @@ class RouteTool implements ToolInterface
     {
         return [
             'type' => 'object',
-            'properties' => new \stdClass(),
+            'properties' => new \stdClass,
             'additionalProperties' => false,
         ];
     }
 
     public function execute(array $arguments = []): mixed
     {
-        $projectRoot = realpath(__DIR__ . '/../../..');
+        $projectRoot = realpath(__DIR__.'/../../..');
 
-        $artisan = $projectRoot . DIRECTORY_SEPARATOR . 'artisan';
+        $artisan = $projectRoot.DIRECTORY_SEPARATOR.'artisan';
 
         if (! file_exists($artisan)) {
             return [

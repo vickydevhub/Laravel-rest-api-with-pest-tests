@@ -20,7 +20,7 @@ use MCP\Transport\StdioTransport;
 $registry = require __DIR__.'/bootstrap.php';
 
 $server = new McpServer($registry);
-$transport = new StdioTransport();
+$transport = new StdioTransport;
 
 try {
     while (true) {
@@ -49,7 +49,7 @@ try {
 
             case 'ping':
                 $transport->write(
-                    Response::success($request->id, new \stdClass())
+                    Response::success($request->id, new stdClass)
                 );
                 break;
 
@@ -74,12 +74,12 @@ try {
                     Response::error(
                         $request->id,
                         -32601,
-                        'Method not found: ' . $request->method
+                        'Method not found: '.$request->method
                     )
                 );
         }
     }
-} catch (\Throwable $exception) {
-    fwrite(STDERR, '[Laravel MCP Server] ' . $exception->getMessage() . PHP_EOL);
+} catch (Throwable $exception) {
+    fwrite(STDERR, '[Laravel MCP Server] '.$exception->getMessage().PHP_EOL);
     exit(1);
 }

@@ -50,9 +50,9 @@ class ArtisanTool implements ToolInterface
             ];
         }
 
-        $projectRoot = realpath(__DIR__ . '/../../..');
+        $projectRoot = realpath(__DIR__.'/../../..');
 
-        $artisan = $projectRoot . DIRECTORY_SEPARATOR . 'artisan';
+        $artisan = $projectRoot.DIRECTORY_SEPARATOR.'artisan';
 
         $fullCommand = sprintf(
             'php "%s" %s 2>&1',

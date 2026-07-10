@@ -29,7 +29,7 @@ class StdioTransport
 
     public function write(string $response): void
     {
-        fwrite(STDOUT, $response . "\n");
+        fwrite(STDOUT, $response."\n");
         fflush(STDOUT);
     }
 }
