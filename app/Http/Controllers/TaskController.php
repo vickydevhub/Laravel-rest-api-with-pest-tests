@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\Task\CreateTaskDTO;
+use App\DTOs\Task\UpdateTaskDTO;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -14,34 +18,27 @@ class TaskController extends Controller
         return response()->json($tasks, 200);
     }
 
-    public function store(Request $request, $projectId)
+    public function store(StoreTaskRequest $request, $projectId)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|string|in:pending,in-progress,completed',
-            'due_date' => 'nullable|date',
-        ]);
+        $validated = array_merge(
+            $request->validated(),
+            ['project_id' => (int) $projectId]
+        );
 
-        $validated['project_id'] = $projectId;
+        $dto = CreateTaskDTO::fromArray($validated);
 
-        $task = Task::create($validated);
+        $task = Task::create($dto->toArray());
 
         return response()->json($task, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
         $task = Task::findOrFail($id);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|string|in:pending,in_progress,completed',
-            'due_date' => 'nullable|date',
-        ]);
+        $dto = UpdateTaskDTO::fromArray($request->validated());
 
-        $task->update($validated);
+        $task->update($dto->toArray());
 
         return response()->json($task, 200);
     }
