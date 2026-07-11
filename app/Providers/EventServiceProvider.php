@@ -10,6 +10,7 @@ use App\Events\TaskCreated;
 use App\Events\TaskDeleted;
 use App\Events\TaskUpdated;
 use App\Listeners\RecordAuditLog;
+use App\Listeners\SendProjectCreatedEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,6 +29,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         ProjectCreated::class => [
             RecordAuditLog::class,
+            SendProjectCreatedEmail::class,
         ],
 
         ProjectUpdated::class => [
