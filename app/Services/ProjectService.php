@@ -4,24 +4,37 @@ namespace App\Services;
 
 use App\DTOs\Project\CreateProjectDTO;
 use App\DTOs\Project\UpdateProjectDTO;
+use App\Events\ProjectCreated;
+use App\Events\ProjectDeleted;
+use App\Events\ProjectUpdated;
 use App\Models\Project;
 
 class ProjectService
 {
     public function create(CreateProjectDTO $dto): Project
     {
-        return Project::create($dto->toArray());
+        $project = Project::create($dto->toArray());
+
+        ProjectCreated::dispatch($project);
+
+        return $project;
     }
 
     public function update(Project $project, UpdateProjectDTO $dto): Project
     {
         $project->update($dto->toArray());
 
-        return $project->refresh();
+        $project->refresh();
+
+        ProjectUpdated::dispatch($project);
+
+        return $project;
     }
 
     public function delete(Project $project): void
     {
+        ProjectDeleted::dispatch($project);
+
         $project->delete();
     }
 }
