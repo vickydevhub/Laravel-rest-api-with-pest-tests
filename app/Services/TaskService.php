@@ -8,9 +8,29 @@ use App\Events\TaskCreated;
 use App\Events\TaskDeleted;
 use App\Events\TaskUpdated;
 use App\Models\Task;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class TaskService
 {
+    public function getAll(): Collection
+    {
+        return Cache::remember(
+            'tasks.all',
+            now()->addMinutes(10),
+            fn () => Task::all()
+        );
+    }
+
+    public function getById(Task $task): Task
+    {
+        return Cache::remember(
+            "tasks.{$task->id}",
+            now()->addMinutes(10),
+            fn () => $task
+        );
+    }
+
     public function create(CreateTaskDTO $dto): Task
     {
         $task = Task::create($dto->toArray());

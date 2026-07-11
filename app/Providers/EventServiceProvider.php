@@ -9,6 +9,7 @@ use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
 use App\Events\TaskDeleted;
 use App\Events\TaskUpdated;
+use App\Listeners\ClearCache;
 use App\Listeners\RecordAuditLog;
 use App\Listeners\SendProjectCreatedEmail;
 use Illuminate\Auth\Events\Registered;
@@ -30,30 +31,37 @@ class EventServiceProvider extends ServiceProvider
         ProjectCreated::class => [
             RecordAuditLog::class,
             SendProjectCreatedEmail::class,
+            ClearCache::class,
         ],
 
         ProjectUpdated::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
 
         ProjectDeleted::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
 
         TaskCreated::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
 
         TaskUpdated::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
 
         TaskDeleted::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
 
         TaskCompleted::class => [
             RecordAuditLog::class,
+            ClearCache::class,
         ],
     ];
 
