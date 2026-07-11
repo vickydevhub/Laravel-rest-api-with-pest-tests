@@ -1,390 +1,254 @@
-# Laravel REST API with PEST Tests
+# Laravel REST API with PEST Tests – AI-Native Enterprise Architecture
 
-![Laravel](https://img.shields.io/badge/Laravel-9.x-FF2D20?style=flat&logo=laravel&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat&logo=php&logoColor=white)
-![Sanctum](https://img.shields.io/badge/Auth-Sanctum-6DB33F?style=flat&logo=laravel&logoColor=white)
-![PEST](https://img.shields.io/badge/Tests-PEST-1D1D1D?style=flat&logo=php&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat)
+> An enterprise-ready Laravel 9 REST API demonstrating modern backend architecture, AI-assisted development, DTOs, Service Layer, Events, Queues, Audit Logs, Caching, automated testing, static analysis, and CI/CD.
 
+## Features
 
-A simple **Laravel 9 REST API** project that demonstrates building APIs with authentication, CRUD operations, and testing using **PEST**.
+### Core API
+- Laravel 9 REST API
+- Laravel Sanctum Authentication
+- User Registration & Login
+- Projects CRUD
+- Tasks CRUD
+- Search & Pagination
+- PEST Tests
 
----
+### Enterprise Architecture
+- DTO (Data Transfer Objects)
+- Service Layer
+- Event-Driven Architecture
+- Event Listeners
+- Queued Listeners
+- Audit Logs
+- Response Caching
+- Thin Controllers
+- SOLID Principles
 
-## 🚀 Features
-
-- Built with **Laravel 9** (supports PHP 8.0+).
-- Authentication using **Laravel Sanctum**.
-- RESTful APIs for managing **Projects** and **Tasks**.
-- Unit and Feature testing with **PEST**.
-- User-to-task assignment.
-- Enum-based task statuses (`pending`, `in_progress`, `completed`).
-
----
-
-## ⚙️ Tech Stack
-
-- **Backend**: Laravel 9, PHP 8.0+
-- **Auth**: Laravel Sanctum
-- **Database**: MySQL (or SQLite for testing)
-- **Testing**: PEST, PHPUnit
-
----
-
-## 📂 Installation
-
-```bash
-# Clone the repo
-git clone https://github.com/vickydevhub/Laravel-rest-api-with-pest-tests.git
-cd Laravel-rest-api-with-pest-tests
-
-# Install dependencies
-composer install
-
-# Copy .env file
-cp .env.example .env
-
-# Generate app key
-php artisan key:generate
-
-# Run migrations
-php artisan migrate
-```
-## 🔑 Authentication
-
-This project uses Laravel Sanctum for API authentication.
-
-## Register a user
-POST /api/register
-
-## Login to get a toke
-
-POST /api/login
-
-## Include the token in the Authorization header for protected routes:
-
-Authorization: Bearer <token>
-
-## 📌 API Endpoints
-
-## Auth
-
-| Method | Endpoint        | Description           |
-| ------ | --------------- | --------------------- |
-| POST   | `/api/register` | Register a new user   |
-| POST   | `/api/login`    | Login and get a token |
-
-## Projects
-
-| Method | Endpoint             | Description       |
-| ------ | -------------------- | ----------------- |
-| GET    | `/api/projects`      | List all projects |
-| POST   | `/api/projects`      | Create project    |
-| PUT    | `/api/projects/{id}` | Update project    |
-| DELETE | `/api/projects/{id}` | Delete project    |
-
-
-## tasks
-
-| Method | Endpoint                   | Description              |
-| ------ | -------------------------- | ------------------------ |
-| GET    | `/api/projects/{id}/tasks` | List tasks for a project |
-| POST   | `/api/projects/{id}/tasks` | Create task              |
-| PUT    | `/api/tasks/{id}`          | Update task              |
-| DELETE | `/api/tasks/{id}`          | Delete task              |
-| POST   | `/api/tasks/{id}/assign`   | Assign task to a user    |
-
-## 🧪 Running Tests
-
-This project uses PEST for testing.
-
-# Run all tests
-php artisan test
-
-# OR run directly with pest
-./vendor/bin/pest
-
-## 📘 API Documentation
-
-This project uses **[Laravel Scribe](https://scribe.knuckles.wtf/)** to generate API documentation.
-
-### Generate docs
-```bash
-php artisan scribe:generate
-```
-## 🐳 Running with Docker
-
-This project supports running inside Docker for easier setup.
-
-### Build the Docker image
-```bash
-docker build -t laravel-rest-api-app .
-
-## Run the Container 
-
-docker run -d -p 8000:8000 --name laravel-rest-api laravel-rest-api-app
-
-```
-
-## Access the application
-
-API will be available at: http://localhost:8000
-
-## Container management
-
-# List running containers
-docker ps
-
-# Stop the container
-docker stop laravel-rest-api
-
-# Start the container again
-docker start laravel-rest-api
-
-# Remove container
-docker rm laravel-rest-api
-
-## Logs
-
-docker logs -f laravel-rest-api
-
-# 🤖 AI-Native Development
-
-This repository demonstrates how AI can be integrated throughout the Software Development Lifecycle (SDLC).
-
-## AI Development Stack
-
+### AI-Native Development
 - Custom PHP MCP Server
-- Cursor AI Integration
+- Cursor AI
 - CodeRabbit AI Reviews
 - GitHub Actions
 - Laravel Pint
 - Larastan
-- PEST Testing
 
----
-
-## Model Context Protocol (MCP)
-
-The project includes a custom PHP implementation of an MCP (Model Context Protocol) server that enables AI assistants to interact directly with the Laravel application.
-
-### Current MCP Tools
-
-| Tool | Description |
-|------|-------------|
-| `laravel_routes` | Lists all Laravel routes |
-| `artisan` | Executes allow-listed Laravel Artisan commands |
-| `pest` | *(Coming Soon)* Execute the PEST test suite |
-| `phpstan` | *(Coming Soon)* Static analysis |
-| `pint` | *(Coming Soon)* Code formatting |
-| `git` | *(Coming Soon)* Git operations |
-| `database` | *(Coming Soon)* Database inspection |
-
----
-
-### Cursor Integration
-
-Create:
+## Architecture
 
 ```text
-.cursor/mcp.json
+Request
+   │
+FormRequest
+   │
+DTO
+   │
+Controller
+   │
+Service
+   ├──────────────┐
+   │              │
+ Model         Events
+                  │
+      ┌───────────┼────────────┐
+      ▼           ▼            ▼
+ Audit Logs   Queue       Cache
+                  │
+                  ▼
+               Email
 ```
 
-Example:
-
-```json
-{
-  "mcpServers": {
-    "laravel-mcp": {
-      "command": "C:\\xampp\\php\\php.exe",
-      "args": [
-        "C:\\xampp\\htdocs\\Laravel-rest-api-with-pest-tests\\mcp\\server.php"
-      ]
-    }
-  }
-}
-```
-
-Restart Cursor after saving the configuration.
-
-The AI assistant can then invoke the MCP tools directly.
-
-Example prompts:
-
-```
-List all Laravel routes.
-```
-
-```
-Run php artisan about.
-```
-
-```
-Show the migration status.
-```
-
----
-
-### MCP Project Structure
+## Project Structure
 
 ```text
-mcp/
-├── bootstrap.php
-├── server.php
-├── composer.json
-└── src/
-    ├── Protocol/
-    ├── Registry/
-    ├── Server/
-    └── Tools/
-        ├── ToolInterface.php
-        ├── RouteTool.php
-        └── ArtisanTool.php
+app/
+├── DTOs/
+│   ├── Auth/
+│   ├── Project/
+│   └── Task/
+├── Events/
+├── Listeners/
+├── Mail/
+├── Models/
+├── Services/
+│   ├── AuthService.php
+│   ├── ProjectService.php
+│   ├── TaskService.php
+│   └── AuditLogService.php
+└── Http/
+    ├── Controllers/
+    └── Requests/
 ```
 
----
+## DTOs
 
-### Security
+DTOs isolate validated request data from business logic.
 
-The MCP server exposes only approved tools.
+- RegisterDTO
+- LoginDTO
+- CreateProjectDTO
+- UpdateProjectDTO
+- CreateTaskDTO
+- UpdateTaskDTO
 
-Current protections:
+Benefits:
+- Type safety
+- Cleaner controllers
+- Easier testing
+- Reusable business logic
 
-- Allow-listed Artisan commands
-- Read-only route inspection
-- No destructive operations
-- Tool registration through a central registry
+## Service Layer
 
-Future enhancements:
+Controllers only orchestrate requests.
 
-- Authentication
-- Authorization
-- Audit logging
-- Tool permissions
+```text
+Controller
+   │
+DTO
+   │
+Service
+   │
+Model
+```
 
-# 🤖 AI-Assisted Development Workflow
+Business logic resides in:
+- AuthService
+- ProjectService
+- TaskService
 
-This project demonstrates an AI-assisted Software Development Lifecycle (SDLC) using modern development tools and GitHub automation.
+## Events
 
-## Local Development
+- ProjectCreated
+- ProjectUpdated
+- ProjectDeleted
+- TaskCreated
+- TaskUpdated
+- TaskCompleted
+- TaskDeleted
 
-### Pre-Commit Quality Checks
+Flow:
 
-Every commit automatically executes:
+```text
+ProjectService
+      │
+ProjectCreated
+      │
+├── RecordAuditLog
+├── SendProjectCreatedEmail
+└── ClearCache
+```
 
-- Laravel Pint (PSR-12 Code Formatting)
-- Larastan (PHPStan Static Analysis)
-- Pest Test Suite
+## Audit Logs
 
-If any check fails, the commit is rejected.
+Every create/update/delete action is recorded.
 
-### Pre-Push Validation
+Table:
 
-Before code is pushed to GitHub:
+- user_id
+- event
+- entity_type
+- entity_id
+- old_values
+- new_values
 
-- Pest tests are executed
-- Push is blocked if tests fail
+## Queue
 
----
+Configure:
 
-## Continuous Integration
+```env
+QUEUE_CONNECTION=database
+```
 
-GitHub Actions automatically validates every Pull Request.
+Commands:
 
-### CI Pipeline
+```bash
+php artisan queue:table
+php artisan migrate
+php artisan queue:work
+```
 
-- Checkout Repository
-- Setup PHP
-- Install Composer Dependencies
-- Validate composer.json
-- Composer Security Audit
+## Cache
+
+Cached endpoints:
+
+- GET /api/projects
+- GET /api/projects/{id}
+- GET /api/tasks
+- GET /api/tasks/{id}
+
+Cache is automatically invalidated using events/listeners.
+
+## Testing
+
+```bash
+php artisan test
+
+vendor/bin/pest
+```
+
+Uses SQLite for testing.
+
+## Code Quality
+
+```bash
+vendor/bin/pint
+vendor/bin/phpstan analyse
+```
+
+## Installation
+
+```bash
+git clone https://github.com/vickydevhub/Laravel-rest-api-with-pest-tests.git
+
+cd Laravel-rest-api-with-pest-tests
+
+composer install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan serve
+```
+
+## AI Development Stack
+
+- Cursor AI
+- Custom PHP MCP Server
+- CodeRabbit
+- GitHub Actions
+- Larastan
 - Laravel Pint
-- Larastan (PHPStan)
-- Pest Tests
 
-Only code that passes all quality gates should be merged.
+## Enterprise Features
 
----
-
-## AI Code Review
-
-This repository uses **CodeRabbit AI** for automated Pull Request reviews.
-
-Features include:
-
-- AI-generated Pull Request summaries
-- Code quality recommendations
-- Laravel best practice suggestions
-- Security analysis
-- Performance recommendations
-- Architecture feedback
-
----
-
-## AI Governance
-
-The project includes an `AGENTS.md` file defining guidelines for AI-assisted development.
-
-AI agents are instructed to:
-
-- Follow PSR-12
-- Follow Laravel best practices
-- Apply SOLID principles
-- Write Pest tests
-- Review security concerns
-- Avoid breaking existing functionality
-- Work only within feature branches
-
----
-
-## Quality Gates
-
-The following automated checks are enforced:
-
+- ✅ DTO Pattern
+- ✅ Service Layer
+- ✅ Events
+- ✅ Event Listeners
+- ✅ Queue Processing
+- ✅ Audit Logs
+- ✅ Response Caching
+- ✅ Search & Pagination
+- ✅ Sanctum Authentication
+- ✅ PEST Testing
+- ✅ Larastan
 - ✅ Laravel Pint
-- ✅ Larastan (PHPStan)
-- ✅ Pest Tests
-- ✅ Composer Validation
-- ✅ Composer Security Audit
-- ✅ GitHub Actions CI
-- ✅ CodeRabbit AI Review
+- ✅ GitHub Actions
 
----
+## Roadmap
 
-## Development Workflow
+- Repository Pattern
+- Notifications
+- Policies
+- API Resources
+- OpenAPI / Swagger
+- Redis
+- Horizon
+- Telescope
+- Octane
+- Multi-tenancy
 
-```text
-Developer
-    │
-Git Commit
-    │
-Pre-Commit Hook
-    ├── Laravel Pint
-    ├── Larastan
-    └── Pest
-    │
-Git Push
-    │
-GitHub Actions CI
-    ├── Composer Validate
-    ├── Composer Audit
-    ├── Laravel Pint
-    ├── Larastan
-    └── Pest
-    │
-Pull Request
-    │
-CodeRabbit AI Review
-    │
-Merge
-```
+## License
 
-
-## 📖 License
-
-This project is open-sourced under the MIT license.
-
-
----
-
-
+MIT
