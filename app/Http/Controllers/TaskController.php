@@ -7,10 +7,15 @@ use App\DTOs\Task\UpdateTaskDTO;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function __construct(
+        private readonly TaskService $taskService
+    ) {}
+
     public function index($projectId)
     {
         $tasks = Task::where('project_id', $projectId)->get();
@@ -27,7 +32,7 @@ class TaskController extends Controller
 
         $dto = CreateTaskDTO::fromArray($validated);
 
-        $task = Task::create($dto->toArray());
+        $task = $this->taskService->create($dto);
 
         return response()->json($task, 201);
     }
@@ -38,7 +43,7 @@ class TaskController extends Controller
 
         $dto = UpdateTaskDTO::fromArray($request->validated());
 
-        $task->update($dto->toArray());
+        $this->taskService->update($task, $dto);
 
         return response()->json($task, 200);
     }
@@ -46,7 +51,7 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::findOrFail($id);
-        $task->delete();
+        $this->taskService->delete($task);
 
         return response()->noContent();
     }

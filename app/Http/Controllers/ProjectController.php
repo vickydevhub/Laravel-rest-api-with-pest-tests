@@ -7,10 +7,15 @@ use App\DTOs\Project\UpdateProjectDTO;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Services\ProjectService;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function __construct(
+        private readonly ProjectService $projectService
+    ) {}
+
     /**
      * GET /api/projects
      */
@@ -59,7 +64,7 @@ class ProjectController extends Controller
 
         $dto = CreateProjectDTO::fromArray($request->validated());
 
-        $project = Project::create($dto->toArray());
+        $project = $this->projectService->create($dto);
 
         return response()->json($project, 201);
     }
@@ -70,7 +75,7 @@ class ProjectController extends Controller
 
         $dto = UpdateProjectDTO::fromArray($request->validated());
 
-        $project->update($dto->toArray());
+        $project = $this->projectService->update($project, $dto);
 
         return response()->json($project, 200);
     }
@@ -78,7 +83,7 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
-        $project->delete();
+        $this->projectService->delete($project);
 
         return response()->noContent();
     }
