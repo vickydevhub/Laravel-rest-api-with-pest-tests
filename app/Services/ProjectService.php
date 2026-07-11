@@ -22,18 +22,27 @@ class ProjectService
 
     public function update(Project $project, UpdateProjectDTO $dto): Project
     {
+        $oldValues = $project->getOriginal();
+
         $project->update($dto->toArray());
 
         $project->refresh();
 
-        ProjectUpdated::dispatch($project);
+        ProjectUpdated::dispatch(
+            $project,
+            $oldValues,
+            $project->toArray(),
+        );
 
         return $project;
     }
 
     public function delete(Project $project): void
     {
-        ProjectDeleted::dispatch($project);
+        ProjectDeleted::dispatch(
+            $project,
+            $project->toArray(),
+        );
 
         $project->delete();
     }

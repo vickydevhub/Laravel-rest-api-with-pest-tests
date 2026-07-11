@@ -18,8 +18,11 @@ class ProjectUpdated
      *
      * @return void
      */
-    public function __construct(public readonly Project $project)
-    {
+    public function __construct(
+        public readonly Project $project,
+        public readonly array $oldValues,
+        public readonly array $newValues,
+    ) {
         //
     }
 

@@ -22,18 +22,27 @@ class TaskService
 
     public function update(Task $task, UpdateTaskDTO $dto): Task
     {
+        $oldValues = $task->getOriginal();
+
         $task->update($dto->toArray());
 
         $task->refresh();
 
-        TaskUpdated::dispatch($task);
+        TaskUpdated::dispatch(
+            $task,
+            $oldValues,
+            $task->toArray(),
+        );
 
         return $task;
     }
 
     public function delete(Task $task): void
     {
-        TaskDeleted::dispatch($task);
+        TaskDeleted::dispatch(
+            $task,
+            $task->toArray(),
+        );
 
         $task->delete();
     }

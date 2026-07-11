@@ -18,8 +18,10 @@ class TaskDeleted
      *
      * @return void
      */
-    public function __construct(public readonly Task $task)
-    {
+    public function __construct(
+        public readonly Task $task,
+        public readonly array $oldValues,
+    ) {
         //
     }
 

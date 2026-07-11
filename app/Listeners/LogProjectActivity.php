@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ProjectCreated;
-use Illuminate\Support\Facades\Log;
+use App\Services\AuditLogService;
 
 class LogProjectActivity
 {
@@ -12,7 +12,7 @@ class LogProjectActivity
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private readonly AuditLogService $auditLogService)
     {
         //
     }
@@ -24,10 +24,10 @@ class LogProjectActivity
      */
     public function handle(ProjectCreated $event)
     {
-        Log::info('Project created', [
-            'project_id' => $event->project->id,
-            'project_name' => $event->project->name,
-            // 'user_id' => $event->project->user_id,
-        ]);
+        $this->auditLogService->log(
+            event: 'project.created',
+            model: $event->project,
+            newValues: $event->project->toArray(),
+        );
     }
 }

@@ -18,8 +18,11 @@ class TaskUpdated
      *
      * @return void
      */
-    public function __construct(public readonly Task $task)
-    {
+    public function __construct(
+        public readonly Task $task,
+        public readonly array $oldValues,
+        public readonly array $newValues,
+    ) {
         //
     }
 

@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Events\ProjectCreated;
+use App\Events\ProjectDeleted;
+use App\Events\ProjectUpdated;
+use App\Events\TaskCompleted;
 use App\Events\TaskCreated;
-use App\Listeners\ClearProjectCache;
-use App\Listeners\ClearTaskCache;
-use App\Listeners\LogProjectActivity;
-use App\Listeners\LogTaskActivity;
+use App\Events\TaskDeleted;
+use App\Events\TaskUpdated;
+use App\Listeners\RecordAuditLog;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,13 +27,31 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         ProjectCreated::class => [
-            LogProjectActivity::class,
-            ClearProjectCache::class,
+            RecordAuditLog::class,
+        ],
+
+        ProjectUpdated::class => [
+            RecordAuditLog::class,
+        ],
+
+        ProjectDeleted::class => [
+            RecordAuditLog::class,
         ],
 
         TaskCreated::class => [
-            LogTaskActivity::class,
-            ClearTaskCache::class,
+            RecordAuditLog::class,
+        ],
+
+        TaskUpdated::class => [
+            RecordAuditLog::class,
+        ],
+
+        TaskDeleted::class => [
+            RecordAuditLog::class,
+        ],
+
+        TaskCompleted::class => [
+            RecordAuditLog::class,
         ],
     ];
 
